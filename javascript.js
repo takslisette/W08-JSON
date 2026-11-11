@@ -5,7 +5,7 @@ const apiKey = "d0efa99fcf6fe856c59c79a5ce7c6cdc";
 // Find the HTML element where we display the weather data.
 const weatherData = document.getElementById("weatherdata");
 
-// Function to fetch and display weather data.
+// Run this function when the user clicks the button.
 async function fetchWeather(city = "Helsinki") {
 
     // Display a loading message.
@@ -21,19 +21,19 @@ async function fetchWeather(city = "Helsinki") {
 
         // Check whether the API returned a successful HTTP status.
         if (!response.ok) {
-            throw new Error("Kaupunkia ei löytynyt tai API-pyyntö epäonnistui.");
+            throw new Error("Säätietojen hakeminen epäonnistui. Tarkista kaupunki ja API-avain.");
         }
 
         // Read the response body as text.
         const xmlText = await response.text();
 
-        // Parse the XML data.
+        // Display and parse the XML data.
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
         // Check for XML parsing errors.
         if (xmlDoc.querySelector("parsererror")) {
-            throw new Error("XML-datan lukeminen epäonnistui.");
+            throw new Error("XML-datan parsiminen epäonnistui.");
         }
 
         // Get weather information from XML.
@@ -42,7 +42,7 @@ async function fetchWeather(city = "Helsinki") {
         const weatherDescription = xmlDoc.querySelector("weather")?.getAttribute("value");
         const humidity = xmlDoc.querySelector("humidity")?.getAttribute("value");
         const clouds = xmlDoc.querySelector("clouds")?.getAttribute("value");
-        const windSpeed = xmlDoc.querySelector("wind speed")?.getAttribute("value");
+        const windSpeed = xmlDoc.querySelector("speed")?.getAttribute("value");
 
         // Display the weather information on the page.
         weatherData.innerHTML = `
@@ -50,7 +50,7 @@ async function fetchWeather(city = "Helsinki") {
             <p><strong>Lämpötila:</strong> ${temperature} °C</p>
             <p><strong>Säätila:</strong> ${weatherDescription}</p>
             <p><strong>Ilmankosteus:</strong> ${humidity} %</p>
-            <p><strong>Pilvisyys:</strong> ${clouds}</p>
+            <p><strong>Pilvisyys:</strong> ${clouds} %</p>
             <p><strong>Tuulen nopeus:</strong> ${windSpeed} m/s</p>
         `;
 
@@ -72,18 +72,19 @@ async function fetchWeather(city = "Helsinki") {
     }
 }
 
-// Run the function when the user clicks the Fetch data button.
+// Add event listener to the Fetch data button.
 document.getElementById("fetchWeather").addEventListener("click", function () {
     fetchWeather(document.getElementById("city").value);
 });
 
-// Run the function when the user selects a city.
+// Add event listener to the city selection.
 document.getElementById("city").addEventListener("change", function () {
     fetchWeather(this.value);
 });
 
-// Search for a city when the search button is clicked.
+// Add event listener to the search button.
 document.getElementById("search").addEventListener("click", function () {
+
     const city = document.getElementById("citysearch").value.trim();
 
     if (city !== "") {
@@ -95,6 +96,7 @@ document.getElementById("search").addEventListener("click", function () {
 
 // Allow searching by pressing Enter.
 document.getElementById("citysearch").addEventListener("keydown", function (event) {
+
     if (event.key === "Enter") {
         document.getElementById("search").click();
     }

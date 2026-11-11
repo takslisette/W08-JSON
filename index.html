@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <HTML lang="fi">
 
@@ -5,51 +6,47 @@
     <meta charset="utf-8">
     <title>Työpaja 8</title>
     <link rel="stylesheet" href="../WS07_AJAX/css/styles.css">
-     <!--This is a comment. Comments are not displayed in the browser-->
-    <!--defer odottaa, että HTML on luettu ennen JavaScriptin suorittamista.-->
     <script src="script.js" defer></script>
 </head>
 
 <body class="ws8">
+
     <h1>Työpaja 8: XML:n parsiminen JavaScriptillä</h1>
     <hr />
-    <p>Tässä harjoituksessa harjoittelemme AJAXin käyttöä JavaScript-sovelluksissa. Käytä luentomateriaalia rinnalla
-        viitteenä näiden tehtävien aikana. Jos teit harjoituksen viime kerralla, voit käyttää sitä pohjana tässä.
-        Ainoastaan datan formaatti ja parsiminen muuttuvat.</p>
+
+    <p>
+        Tässä harjoituksessa harjoittelemme AJAXin käyttöä
+        JavaScript-sovelluksissa.
+    </p>
 
     <hr />
-    <h2>Harjoitus 1: Käytännön haaste: OpenWeatherMap API</h2>
 
-    <p>OpenWeatherMap on tunnettu säädatan tarjoaja verkossa. Se tarjoaa API:n, jonka avulla kehittäjät voivat hakea
-        säätietoja. <a href="https://openweathermap.org/api">Dokumentaatio löytyy täältä</a>.</p>
-    <p>Tehtäväsi on kirjoittaa Sää-sovellus, joka näyttää säätiedot käyttäjän toiveiden mukaan. <b>Huomaa, että sinun
-            täytyy rekisteröityä (ilmaista) saadaksesi API-avaimen, joka mahdollistaa palvelun käytön.</b></p>
+    <h2>Harjoitus 1: OpenWeatherMap API</h2>
 
-    <p>Esimerkkikutsu REST API:iin voisi näyttää tältä: (huomaa mode-parametri!) <a
-            href="http://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&mode=xml&APPID=ff64c247a136f706923d1ee0d55d71e2">http://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&mode=JSON&APPID=ff64c247a136f706923d1ee0d55d71e2</a>.
-        Klikkaa nähdäksesi vastauksen.</p>
-    <ul>
-        <li>Kehitä ensin sovellus, joka näyttää raakatiedot säästä (lämpötila, pilvisyys, ilmankosteus) tietyssä
-            kaupungissa, kun painiketta klikataan.
-        <li>Kun tämä toimii, parsi data ja tulosta se diviin.</li>
-        <li>Tämän jälkeen lisää onchange-tapahtuma pudotusvalikkoon, jotta käyttäjä voi valita, minkä kaupungin tiedot
-            näytetään listalta.</li>
-        <li>Lopuksi lisää toiminnallisuus syötekenttään, johon käyttäjä voi kirjoittaa hakukyselyn, joka lähetetään
-            OpenWeatherMap API:lle ja jonka tulokset näytetään sovelluksessa.</li>
-    </ul>
-    <p>Valitse kaupunki listalta:</p>
-    
+    <p>
+        OpenWeatherMap tarjoaa API:n, jonka avulla voidaan hakea säätietoja.
+    </p>
+
+    <h3>Valitse kaupunki listalta:</h3>
+
+    <select name="mySelect" id="city">
         <option value="Helsinki">Helsinki</option>
         <option value="Stockholm">Tukholma</option>
         <option value="Rome">Rooma</option>
         <option value="New York">New York</option>
     </select>
-    <p>Tai kirjoita hakusana: <input id="citysearch" /><button id="search">Hae</button></p>
-    <div id="weatherdata">Säätiedot näkyvät täällä.</div>
 
-    <!--This is a comment. Comments are not displayed in the browser-->
+    <p>
+        Tai kirjoita hakusana:
+        <input id="citysearch" type="text" placeholder="Kirjoita kaupunki">
+        <button id="search">Hae</button>
+    </p>
+
     <button id="fetchWeather">Hae data</button>
 
-</body>
+    <div id="weatherdata">
+        Säätiedot näkyvät täällä.
+    </div>
 
-</html>
+</body>
+</HTML>
