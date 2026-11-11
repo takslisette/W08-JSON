@@ -1,5 +1,5 @@
 //tähän tulee oma OpenWeatherMap API-avain
-const apiKey = "APIKEY TÄHÄN";
+const apiKey = "YOUR_API_KEY";
 
 
 const weatherData = document.getElementById("weatherdata");
@@ -61,7 +61,7 @@ async function fetchWeather(city = "Helsinki") {
         // Choose an error message in the page's language.
         const errorMessage = "Säätietojen hakeminen epäonnistui.";
 
-        display the error message in the weather data section.
+        // Display the error message in the weather data section.
         weatherData.innerHTML = `
             <p>${errorMessage}</p>
             <p>${error.message}</p>
